@@ -11,7 +11,7 @@ cd vule-blog
 yarn
 ```
 
-Create a `.env` file similar to [`.env.example`](https://github.com/vule96/vule-blog/blob/main/.env.example).
+Create a `.env` file similar to [`.env.example`](https://github.com/vule96/vule-blog/blob/master/.env.example).
 
 ```bash
 yarn dev
