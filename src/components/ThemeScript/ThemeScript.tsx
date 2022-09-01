@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/strict-boolean-expressions */
-/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import { useMemo } from 'react';
 import { minify } from 'uglify-js';
 import { clientScript } from './client';
@@ -16,7 +14,7 @@ const ThemeScript = ({
   themeClassNames,
   themeStorageKey,
   ...rest
-}: ThemeScriptProps) => {
+}: ThemeScriptProps): JSX.Element => {
   const minified = useMemo(() => {
     // since the client function will end up being injected as a plain dumb string, we need to set dynamic values here:
     const functionString = String(clientScript)
@@ -32,8 +30,7 @@ const ThemeScript = ({
       return unminified;
     }
 
-    // minify the final code, a bit hacky but this is ONLY done at build-time, so uglify-js is never bundled or sent to
-    // the browser to execute.
+    // minify the final code, a bit hacky but this is ONLY done at build-time, so uglify-js is never bundled or sent to the browser to execute.
     const minified = minify(unminified, {
       toplevel: true,
       compress: {

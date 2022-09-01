@@ -7,7 +7,7 @@ import {
 } from 'lib/styles/stitches.config';
 import { Inter, RobotoMono } from 'lib/styles/fonts';
 import ThemeScript from 'src/components/ThemeScript';
-// https://nextjs.org/docs/advanced-features/custom-document
+
 export default class Document extends NextDocument {
   render(): JSX.Element {
     return (

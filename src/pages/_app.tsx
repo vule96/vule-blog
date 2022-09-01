@@ -10,7 +10,6 @@ import { useRouter } from 'next/router';
 import { ReactElement, ReactNode } from 'react';
 import Layout from 'src/components/Layout';
 
-// https://nextjs.org/docs/basic-features/layouts#with-typescript
 export type AppProps = NextAppProps & {
   Component: NextPage & {
     getLayout?: (page: ReactElement) => ReactNode;

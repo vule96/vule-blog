@@ -82,31 +82,8 @@ export const socialProfileJsonLd: SocialProfileJsonLdProps = {
   sameAs: [
     `${config.baseUrl}/`,
     `https://github.com/${config.authorSocial?.github}`,
-    // `https://keybase.io/${config.authorSocial?.keybase}`,
     `https://twitter.com/${config.authorSocial?.twitter}`,
-    // `https://medium.com/@${config.authorSocial?.medium}`,
     `https://www.linkedin.com/in/${config.authorSocial?.linkedin}/`,
     `https://www.facebook.com/${config.authorSocial?.facebook}`,
-    // `https://www.instagram.com/${config.authorSocial?.instagram}/`,
   ],
 };
-
-// // Just the basic items applicable to all notes, extended by pages/notes/[slug].tsx
-// // https://github.com/garmeeh/next-seo#article-1
-// export const articleJsonLd: Pick<ArticleJsonLdProps, "authorName" | "publisherName" | "publisherLogo"> = {
-//   authorName: [config.authorName],
-//   publisherName: config.siteName,
-//   publisherLogo: `${config.baseUrl}${meJpg.src}`,
-// };
-
-// // Re-export icons to use their static image data elsewhere
-// export const favicons: Record<string, StaticImageData> = {
-//   faviconIco,
-//   faviconPng,
-//   appleTouchIconPng,
-//   chrome512Png,
-//   chrome192Png,
-//   maskable512Png,
-//   maskable192Png,
-//   meJpg,
-// };

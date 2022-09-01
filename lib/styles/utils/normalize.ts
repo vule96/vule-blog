@@ -1,6 +1,3 @@
-/*! stitches-normalize | MIT License | https://github.com/jakejarvis/stitches-normalize */
-/*! modern-normalize v1.1.0 | MIT License | https://github.com/sindresorhus/modern-normalize */
-
 import type * as Stitches from '@stitches/react';
 
 const normalizeStyles: Record<string, Stitches.CSSProperties> = {
