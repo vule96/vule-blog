@@ -1,4 +1,4 @@
-import { DefaultSeoProps } from 'next-seo';
+import { DefaultSeoProps, SocialProfileJsonLdProps } from 'next-seo';
 import * as config from '.';
 
 // Most of this file simply takes the data already defined in ./config.js and translates it into objects that are
@@ -74,22 +74,22 @@ export const defaultSeo: DefaultSeoProps = {
   ],
 };
 
-// // https://github.com/garmeeh/next-seo#social-profile
-// export const socialProfileJsonLd: SocialProfileJsonLdProps = {
-//   type: "Person",
-//   name: config.authorName,
-//   url: `${config.baseUrl}/`,
-//   sameAs: [
-//     `${config.baseUrl}/`,
-//     `https://github.com/${config.authorSocial?.github}`,
-//     `https://keybase.io/${config.authorSocial?.keybase}`,
-//     `https://twitter.com/${config.authorSocial?.twitter}`,
-//     `https://medium.com/@${config.authorSocial?.medium}`,
-//     `https://www.linkedin.com/in/${config.authorSocial?.linkedin}/`,
-//     `https://www.facebook.com/${config.authorSocial?.facebook}`,
-//     `https://www.instagram.com/${config.authorSocial?.instagram}/`,
-//   ],
-// };
+// https://github.com/garmeeh/next-seo#social-profile
+export const socialProfileJsonLd: SocialProfileJsonLdProps = {
+  type: 'Person',
+  name: config.authorName,
+  url: `${config.baseUrl}/`,
+  sameAs: [
+    `${config.baseUrl}/`,
+    `https://github.com/${config.authorSocial?.github}`,
+    // `https://keybase.io/${config.authorSocial?.keybase}`,
+    `https://twitter.com/${config.authorSocial?.twitter}`,
+    // `https://medium.com/@${config.authorSocial?.medium}`,
+    `https://www.linkedin.com/in/${config.authorSocial?.linkedin}/`,
+    `https://www.facebook.com/${config.authorSocial?.facebook}`,
+    // `https://www.instagram.com/${config.authorSocial?.instagram}/`,
+  ],
+};
 
 // // Just the basic items applicable to all notes, extended by pages/notes/[slug].tsx
 // // https://github.com/garmeeh/next-seo#article-1

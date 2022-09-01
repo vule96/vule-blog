@@ -1,8 +1,12 @@
 import { ThemeProvider } from 'contexts/ThemeContext';
+import config from 'lib/config';
+import { defaultSeo, socialProfileJsonLd } from 'lib/config/SEO';
 import { globalStyles, themeClassNames } from 'lib/styles/stitches.config';
 import { NextPage } from 'next';
+import { DefaultSeo, SocialProfileJsonLd } from 'next-seo';
 
 import type { AppProps as NextAppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import { ReactElement, ReactNode } from 'react';
 import Layout from 'src/components/Layout';
 
@@ -14,16 +18,43 @@ export type AppProps = NextAppProps & {
 };
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  // inject body styles defined in ../lib/styles/stitches.config.ts
+  const router = useRouter();
+
+  // get this page's URL with full domain, and hack around query parameters and anchors
+  // NOTE: this assumes trailing slashes are enabled in next.config.js
+  const canonical = `${config.baseUrl}${
+    router.pathname === '/' ? '' : router.pathname
+  }/`;
+
+  // inject body styles defined in lib/styles/stitches.config.ts
   globalStyles();
 
   // allow layout overrides per-page, but default to plain `<Layout />`
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
 
   return (
-    <ThemeProvider classNames={themeClassNames}>
-      {getLayout(<Component {...pageProps} />)}
-    </ThemeProvider>
+    <>
+      <DefaultSeo
+        // all SEO config is in ../lib/config/seo.ts except for canonical URLs, which require access to next router
+        {...defaultSeo}
+        canonical={canonical}
+        openGraph={{
+          ...defaultSeo.openGraph,
+          url: canonical,
+        }}
+        // don't let search engines index branch/deploy previews
+        dangerouslySetAllPagesToNoIndex={
+          process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production'
+        }
+        dangerouslySetAllPagesToNoFollow={
+          process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production'
+        }
+      />
+      <SocialProfileJsonLd {...socialProfileJsonLd} />
+      <ThemeProvider classNames={themeClassNames}>
+        {getLayout(<Component {...pageProps} />)}
+      </ThemeProvider>
+    </>
   );
 }
 
