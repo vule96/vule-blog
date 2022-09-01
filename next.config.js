@@ -1,3 +1,4 @@
+const path = require('path');
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
 const config = require('./lib/config');
 
@@ -23,6 +24,14 @@ module.exports = (phase) => {
       deviceSizes: [640, 750, 828, 1080, 1200, 1920],
       formats: ['image/avif', 'image/webp'],
     },
+    experimental: {
+      legacyBrowsers: false,
+      browsersListForSwc: true,
+      images: {
+        allowFutureImage: true, // https://github.com/vercel/next.js/pull/37927
+      },
+      newNextLinkBehavior: true, // https://github.com/vercel/next.js/pull/36436
+    },
     webpack: (config) => {
       // this lets us statically import webfonts like we would images, allowing cool things like preloading them
       config.module.rules.push({
@@ -32,6 +41,31 @@ module.exports = (phase) => {
         generator: {
           filename: 'static/media/[name].[hash:8][ext]',
         },
+      });
+
+      // allow processing SVGs from the below packages directly instead of through their different exports, and leave
+      // other static imports of SVGs alone.
+      // see: ./components/Icons/index.ts
+      config.module.rules.push({
+        test: /\.svg$/i,
+        issuer: { and: [/\.(js|ts)x?$/] },
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              icon: true,
+              typescript: true,
+              svgProps: {
+                'aria-hidden': true,
+              },
+            },
+          },
+        ],
+        include: [
+          // path.resolve(__dirname, 'node_modules/@primer/octicons/build/svg'),
+          path.resolve(__dirname, 'node_modules/feather-icons/dist/icons'),
+          // path.resolve(__dirname, 'node_modules/simple-icons/icons'),
+        ],
       });
 
       return config;
