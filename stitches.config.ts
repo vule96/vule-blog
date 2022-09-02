@@ -2,10 +2,11 @@ import { createStitches } from '@stitches/react';
 import type * as Stitches from '@stitches/react';
 
 import hexToRgba from 'hex-to-rgba';
-import normalizeStyles from './lib/styles/stitches/normalize';
+import normalizeStyles from './lib/stitches/normalize';
 
 // web fonts
-import { Inter, RobotoMono } from './lib/styles/stitches/fonts';
+import { Inter, RobotoMono } from './lib/stitches/fonts';
+import { breakpoints, spaces } from 'lib/stitches';
 
 // https://stitches.dev/docs/typescript#type-a-css-object
 export type CSS = Stitches.CSS<typeof stitchesConfig>;
@@ -30,7 +31,10 @@ export const {
       mono: `${RobotoMono.name.regular}, ${systemFont}`,
       monoVar: `${RobotoMono.name.variable}, ${systemFont}`,
     },
-
+    sizes: {
+      maxLayoutWidth: '960px',
+    },
+    space: spaces as { [x: string]: string },
     colors: {
       backgroundInner: '#ffffff',
       backgroundOuter: '#fcfcfc',
@@ -62,11 +66,6 @@ export const {
       codeAddition: '#44a248',
       codeDeletion: '#ff1b1b',
     },
-
-    sizes: {
-      maxLayoutWidth: '960px',
-    },
-
     radii: {
       corner: '0.6rem',
     },
@@ -77,13 +76,11 @@ export const {
       linkHover: '0.2s ease-in-out',
     },
   },
-
   media: {
-    // most responsive styles will go here:
-    medium: '(max-width: 768px)',
-    // used rarely only for SUPER narrow windows:
-    small: '(max-width: 380px)',
-    // ...note: things then COMPLETELY break at 300px. but it's 2022 let's be real.
+    ...breakpoints,
+    hover: '(any-hover: hover)',
+    animations: '(prefers-reduced-motion: no-preference)',
+    reduceMotion: '(prefers-reduced-motion: reduce)',
   },
 
   utils: {

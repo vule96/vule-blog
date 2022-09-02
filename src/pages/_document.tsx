@@ -1,7 +1,7 @@
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import * as config from 'lib/config';
 import { getCssText, themeClassNames, themeStorageKey } from 'stitches.config';
-import { Inter, RobotoMono } from 'lib/styles/stitches/fonts';
+import { Inter, RobotoMono } from 'lib/stitches/fonts';
 import ThemeScript from 'src/components/ThemeScript';
 
 export default class Document extends NextDocument {
