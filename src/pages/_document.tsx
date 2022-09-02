@@ -1,11 +1,7 @@
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 import * as config from 'lib/config';
-import {
-  getCssText,
-  themeClassNames,
-  themeStorageKey,
-} from 'lib/styles/stitches.config';
-import { Inter, RobotoMono } from 'lib/styles/fonts';
+import { getCssText, themeClassNames, themeStorageKey } from 'stitches.config';
+import { Inter, RobotoMono } from 'lib/styles/stitches/fonts';
 import ThemeScript from 'src/components/ThemeScript';
 
 export default class Document extends NextDocument {
@@ -19,16 +15,17 @@ export default class Document extends NextDocument {
             {...{ themeClassNames, themeStorageKey }}
           />
 
-          {/* preload highest priority fonts defined in ../lib/styles/fonts/ */}
-          {[...Inter.preloads, ...RobotoMono.preloads].map(({ href, type }) => (
-            <link
-              key={href}
-              rel='preload'
-              as='font'
-              {...{ type, href }}
-              crossOrigin='anonymous'
-            />
-          ))}
+          {[...Inter.preloads, ...RobotoMono.preloads].map(
+            ({ href, key, type }) => (
+              <link
+                key={key}
+                rel='preload'
+                as='font'
+                {...{ type, href }}
+                crossOrigin='anonymous'
+              />
+            )
+          )}
 
           <style
             id='stitches'

@@ -1,6 +1,6 @@
 import Link from 'src/components/Link';
 import Image from 'src/components/Image';
-import { styled, theme } from 'lib/styles/stitches.config';
+import { styled, theme } from 'stitches.config';
 import { authorName } from 'lib/config';
 import type { ComponentProps } from 'react';
 

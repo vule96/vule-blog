@@ -1,6 +1,6 @@
 import NextImage from 'next/future/image';
 import Link from '../Link';
-import { styled, theme } from 'lib/styles/stitches.config';
+import { styled, theme } from 'stitches.config';
 import type { ComponentProps } from 'react';
 import type {
   ImageProps as NextImageProps,
@@ -10,8 +10,6 @@ import type {
 const Block = styled('div', {
   display: 'block',
   lineHeight: 0,
-
-  // default to centering all images
   margin: '1em auto',
   textAlign: 'center',
 });

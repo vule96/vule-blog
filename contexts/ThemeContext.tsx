@@ -1,7 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from 'react';
 import useLocalStorage from 'hooks/useLocalStorage';
 import useMedia from 'hooks/useMedia';
-import { themeStorageKey } from 'lib/styles/stitches.config';
+import { themeStorageKey } from 'stitches.config';
 import type { Context, PropsWithChildren } from 'react';
 
 export const ThemeContext: Context<{
@@ -100,7 +100,6 @@ export const ThemeProvider = ({
   );
 };
 
-// debugging help pls
 if (process.env.NODE_ENV !== 'production') {
   ThemeContext.displayName = 'ThemeContext';
 }

@@ -1,15 +1,16 @@
 import { createStitches } from '@stitches/react';
 import type * as Stitches from '@stitches/react';
 
-// misc. helpers
 import hexToRgba from 'hex-to-rgba';
-import normalizeStyles from './utils/normalize';
+import normalizeStyles from './lib/styles/stitches/normalize';
 
 // web fonts
-import { Inter, RobotoMono } from './fonts';
+import { Inter, RobotoMono } from './lib/styles/stitches/fonts';
 
 // https://stitches.dev/docs/typescript#type-a-css-object
 export type CSS = Stitches.CSS<typeof stitchesConfig>;
+
+const systemFont = `system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`;
 
 export const {
   styled,
@@ -23,10 +24,11 @@ export const {
 } = createStitches({
   theme: {
     fonts: {
-      sans: `"${Inter.name.regular}", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
-      sansVar: `"${Inter.name.variable}", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif`,
-      mono: `"${RobotoMono.name.regular}", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
-      monoVar: `"${RobotoMono.name.variable}", ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, Courier`,
+      system: systemFont,
+      sans: `${Inter.name.regular}, ${systemFont}`,
+      sansVar: `${Inter.name.variable}, ${systemFont}`,
+      mono: `${RobotoMono.name.regular}, ${systemFont}`,
+      monoVar: `${RobotoMono.name.variable}, ${systemFont}`,
     },
 
     colors: {
@@ -62,7 +64,7 @@ export const {
     },
 
     sizes: {
-      maxLayoutWidth: '865px',
+      maxLayoutWidth: '960px',
     },
 
     radii: {
@@ -72,7 +74,6 @@ export const {
     transitions: {
       // light <-> dark theme fade duration
       fade: '0.25s ease',
-      // fancy underline animation
       linkHover: '0.2s ease-in-out',
     },
   },
@@ -150,7 +151,6 @@ export const globalStyles = globalCss(
       fontFamily: theme.fonts.mono,
     },
 
-    // variable font support?
     '@supports (font-variation-settings: normal)': {
       body: {
         fontFamily: theme.fonts.sansVar,

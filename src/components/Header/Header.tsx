@@ -1,6 +1,6 @@
 import Avatar from 'src/components/Avatar';
 import { Menu } from 'src/components/Menu';
-import { styled, theme } from 'lib/styles/stitches.config';
+import { styled, theme } from 'stitches.config';
 import type { ComponentProps } from 'react';
 
 const Wrapper = styled('header', {

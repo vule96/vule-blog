@@ -1,5 +1,3 @@
-// Modified from https://github.com/streamich/react-use/blob/e53ca94a0b1f20270b0f75dc2ca1fecf1e119dde/src/useMedia.ts
-
 import { useEffect, useState } from 'react';
 
 const useMedia = (query: string, defaultState?: boolean): boolean => {
@@ -25,13 +23,13 @@ const useMedia = (query: string, defaultState?: boolean): boolean => {
       setState(!!mql.matches);
     };
 
-    // TODO: switch to more modern `addEventListener()`
-    mql.addListener(onChange);
+    mql.addEventListener('change', onChange);
     setState(mql.matches);
 
     return () => {
       mounted = false;
-      mql.removeListener(onChange);
+
+      mql.removeEventListener('change', onChange);
     };
   }, [query]);
 

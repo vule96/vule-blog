@@ -1,6 +1,6 @@
 import NextLink from 'next/link';
 import objStr from 'obj-str';
-import { styled, theme, stitchesConfig } from 'lib/styles/stitches.config';
+import { styled, theme, stitchesConfig } from 'stitches.config';
 import { baseUrl } from 'lib/config';
 import type { ComponentProps } from 'react';
 

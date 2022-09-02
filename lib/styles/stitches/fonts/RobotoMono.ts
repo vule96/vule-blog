@@ -1,5 +1,3 @@
-import type { AtRule } from '@stitches/react/types/css';
-
 // Legacy
 import robotoMonoLatin400NormalWoff from '@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff';
 import robotoMonoLatin400NormalWoff2 from '@fontsource/roboto-mono/files/roboto-mono-latin-400-normal.woff2';
@@ -17,6 +15,7 @@ import robotoMonoLatin700ItalicWoff2 from '@fontsource/roboto-mono/files/roboto-
 // Variable
 import robotoMonoLatinVarWghtOnlyNormalWoff2 from '@fontsource/roboto-mono/files/roboto-mono-latin-variable-wghtOnly-normal.woff2';
 import robotoMonoLatinVarWghtOnlyItalicWoff2 from '@fontsource/roboto-mono/files/roboto-mono-latin-variable-wghtOnly-italic.woff2';
+import type { AtRule } from '@stitches/react/types/css';
 
 export const name = {
   regular: 'Roboto Mono',
@@ -26,6 +25,7 @@ export const name = {
 // re-export hashed URL(s) of the most prominent files so we can preload them in `<head>` (see pages/_document.tsx):
 export const preloads = [
   {
+    key: 'roboto-var',
     href: robotoMonoLatinVarWghtOnlyNormalWoff2,
     type: 'font/woff2',
   },

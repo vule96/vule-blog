@@ -1,9 +1,9 @@
 import Head from 'next/head';
-import Header from '../Header';
-import Footer from '../Footer';
+import Header from 'src/components/Header';
+import Footer from 'src/components/Footer';
 import { SkipToContentLink, SkipToContentTarget } from '../SkipToContent';
 import useTheme from 'hooks/useTheme';
-import { styled, theme, darkTheme } from 'lib/styles/stitches.config';
+import { styled, theme, darkTheme } from 'stitches.config';
 import type { ComponentProps } from 'react';
 
 const Flex = styled('div', {
@@ -23,19 +23,17 @@ const Container = styled('div', {
   display: 'block',
 });
 
-// stick header to the top of the page when scrolling
 const StickyHeader = styled(Header, {
   position: 'sticky',
   top: 0,
 });
 
-// footer needs to fill the remaining vertical screen space. doing it here to keep flex stuff together.
 const FlexedFooter = styled(Footer, {
   flex: 1,
 });
 
 export type LayoutProps = ComponentProps<typeof Flex> & {
-  container?: boolean; // pass false to disable default `<main>` container styles with padding, etc.
+  container?: boolean;
 };
 
 const Layout = ({
@@ -63,7 +61,6 @@ const Layout = ({
       <Flex {...rest}>
         <StickyHeader />
 
-        {/* passing `container={false}` to Layout allows 100% control of the content area on a per-page basis */}
         {container ? (
           <Default>
             <SkipToContentTarget />

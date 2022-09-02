@@ -1,4 +1,4 @@
-import { styled, theme } from 'lib/styles/stitches.config';
+import { styled, theme } from 'stitches.config';
 
 const HiddenLink = styled('a', {
   // accessible invisibility stuff pulled from @reach/skip-nav:

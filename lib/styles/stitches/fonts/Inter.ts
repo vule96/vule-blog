@@ -1,5 +1,3 @@
-import type { AtRule } from '@stitches/react/types/css';
-
 // Legacy
 import interLatin400NormalWoff from '@fontsource/inter/files/inter-latin-400-normal.woff';
 import interLatin400NormalWoff2 from '@fontsource/inter/files/inter-latin-400-normal.woff2';
@@ -10,6 +8,7 @@ import interLatin700NormalWoff2 from '@fontsource/inter/files/inter-latin-700-no
 
 // Variable
 import interLatinVarFullNormalWoff2 from '@fontsource/inter/files/inter-latin-variable-full-normal.woff2';
+import type { AtRule } from '@stitches/react/types/css';
 
 export const name = {
   regular: 'Inter',
@@ -19,6 +18,7 @@ export const name = {
 // re-export hashed URL(s) of the most prominent files so we can preload them in `<head>` (see pages/_document.tsx):
 export const preloads = [
   {
+    key: 'inter-var',
     href: interLatinVarFullNormalWoff2,
     type: 'font/woff2',
   },

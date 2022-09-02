@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'contexts/ThemeContext';
 import config from 'lib/config';
 import { defaultSeo, socialProfileJsonLd } from 'lib/config/SEO';
-import { globalStyles, themeClassNames } from 'lib/styles/stitches.config';
+import { globalStyles, themeClassNames } from 'stitches.config';
 import { NextPage } from 'next';
 import { DefaultSeo, SocialProfileJsonLd } from 'next-seo';
 
@@ -25,10 +25,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     router.pathname === '/' ? '' : router.pathname
   }/`;
 
-  // inject body styles defined in lib/styles/stitches.config.ts
   globalStyles();
 
-  // allow layout overrides per-page, but default to plain `<Layout />`
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
 
   return (

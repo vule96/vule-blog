@@ -4,7 +4,7 @@ import useMedia from 'hooks/useMedia';
 import useFirstMountState from 'hooks/useFirstMountState';
 import useTheme from 'hooks/useTheme';
 import useHasMounted from 'hooks/useHasMounted';
-import { styled, theme } from 'lib/styles/stitches.config';
+import { styled, theme } from 'stitches.config';
 
 const Button = styled('button', {
   border: 0,
