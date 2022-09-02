@@ -1,54 +1,141 @@
-import Avatar from 'src/components/Avatar';
-import { Menu } from 'src/components/Menu';
-import { styled, theme } from 'stitches.config';
-import type { ComponentProps } from 'react';
+// import { mdiMenu, mdiPlus } from '@mdi/js';
+import { FC, useState } from 'react';
+import { styled } from 'stitches.config';
 
-const Wrapper = styled('header', {
+// import { Logo } from '@/components/atoms';
+
+// import { ThemeToggle } from './ThemeToggle';
+// import { MobileMenu } from './ToolbarButton';
+import { ToolbarLinksContainer, ToolbarLink } from './ToolbarLink';
+import { ToolbarNavLinks } from './ToolbarNavLinks';
+
+const HeaderContainer = styled('header', {
+  $$toolbarHeight: '56px',
+  $$floatingMargin: 'calc($$totalToolbarHeight - $$toolbarHeight)',
+  $$baseActualHeight: 'calc($$toolbarHeight + $$floatingMargin)',
+  zIndex: 2,
+  position: 'fixed',
+  top: 0,
+  left: '50%',
+  transform: 'translateX(-50%)',
+  pt: '$$floatingMargin',
+  height: '$$baseActualHeight',
   width: '100%',
-  height: '4.5em',
-  padding: '0.7em 1.5em',
-  borderBottom: `1px solid ${theme.colors.kindaLight}`,
-  backgroundColor: theme.colors.backgroundHeader,
-  transition: `background ${theme.transitions.fade}, border ${theme.transitions.fade}`,
-  zIndex: 9999,
+  maxWidth: '$max-site-width',
+  transition: 'height ease-in-out .25s',
 
-  backdropFilter: 'saturate(180%) blur(5px)',
+  '@tablet-sm': {
+    height: 'calc($$baseActualHeight + 4px)',
+  },
 
-  '@medium': {
-    padding: '0.75em 1.25em',
-    height: '5.9em',
+  '&::before': {
+    zIndex: 1,
+    content: '',
+    position: 'absolute',
+    display: 'block',
+    top: 0,
+    height: 'calc($$floatingMargin + 6px)',
+    width: 'calc(100% - calc($$floatingMargin * 2))',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    background: 'linear-gradient(to bottom, $background, transparent)',
+    backdropFilter: 'blur(8px) saturate(150%)',
+  },
+  '@tablet-md': {
+    '&::before': {
+      width: '100%',
+    },
+  },
+
+  variants: {
+    expanded: {
+      true: {
+        height:
+          'calc(calc($$baseActualHeight * 2) - calc($$floatingMargin * 1.75))',
+        '@tablet-sm': {
+          height: 'calc($$baseActualHeight + 4px)',
+        },
+      },
+    },
   },
 });
 
 const Nav = styled('nav', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-  width: '100%',
-  maxWidth: theme.sizes.maxLayoutWidth,
-  margin: '0 auto',
-});
+  $$spaceDivider: 1.25,
+  zIndex: 3,
+  position: 'relative',
+  display: 'grid',
+  height: '100%',
+  backgroundColor: '$toolbar',
+  backdropFilter: 'blur(10px) saturate(150%)',
+  borderRadius: '$space$10',
+  border: '1px solid rgba($colors$toolbar-glow / .12)',
+  boxShadow: '0 0 6px 1px rgba($colors$toolbar-glow / .16)',
+  p: 'calc($$floatingMargin / $$spaceDivider)',
+  mx: '$$floatingMargin',
+  transition: 'box-shadow ease-in-out .2s',
+  gap: '0',
+  gridTemplateRows: '1fr',
+  gridTemplateColumns: 'auto 1fr',
 
-const ResponsiveMenu = styled(Menu, {
-  '@medium': {
-    maxWidth: '325px',
+  hocus: {
+    border: '1px solid rgba($colors$toolbar-glow / .24)',
+    boxShadow: '0 0 8px 2px rgba($colors$toolbar-glow / .28)',
   },
 
-  '@small': {
-    maxWidth: '225px',
+  '@tablet-sm': {
+    $$spaceDivider: 1.5,
+    gap: 'calc($$floatingMargin / $$spaceDivider)',
+    gridTemplateColumns: 'auto 1fr auto',
+  },
+
+  '@tablet-md': {
+    mx: 0,
+  },
+
+  '& svg': {
+    width: '24px',
+    height: '24px',
+  },
+
+  variants: {
+    expanded: {
+      true: {
+        gridTemplateRows: '1fr minmax(0px, 1fr)',
+        rowGap: 'calc($$floatingMargin / $$spaceDivider)',
+        '@tablet-sm': {
+          gridTemplateRows: 'minmax(0px, 1fr)',
+        },
+      },
+    },
   },
 });
 
-export type HeaderProps = ComponentProps<typeof Wrapper>;
-
-const Header = ({ ...rest }: HeaderProps): JSX.Element => {
+const Header: FC = () => {
+  const [isExpanded] = useState(false);
   return (
-    <Wrapper {...rest}>
-      <Nav>
-        <Avatar />
-        <ResponsiveMenu />
+    <HeaderContainer expanded={isExpanded}>
+      <Nav expanded={isExpanded}>
+        <ToolbarLink home href={'/'} title={'Home page'} underline={false}>
+          {/* <Logo fillColor={theme.colors['gradient-brand']?.value} /> */}
+          <span>Vu Le</span>
+        </ToolbarLink>
+        <ToolbarNavLinks expanded={isExpanded} />
+        <ToolbarLinksContainer>
+          {/* <ThemeToggle /> */}
+          <li>
+            {/* <MobileMenu
+              title={`${isExpanded ? 'Collapse' : 'Expand'} menu`}
+              aria-expanded={isExpanded}
+              iconPath={isExpanded ? mdiPlus : mdiMenu}
+              onClick={() => {
+                expand(!isExpanded);
+              }}
+            /> */}
+          </li>
+        </ToolbarLinksContainer>
       </Nav>
-    </Wrapper>
+    </HeaderContainer>
   );
 };
 

@@ -4,9 +4,10 @@ import {
   ProjectsIcon,
   ContactIcon,
 } from 'src/components/Icons';
-import type { MenuItemProps } from 'src/components/Menu';
+// import type { MenuItemProps } from 'src/components/Menu';
 
-export const menuItems: MenuItemProps[] = [
+// export const menuItems: MenuItemProps[] = [
+export const menuItems: any[] = [
   {
     icon: HomeIcon,
     text: 'Home',

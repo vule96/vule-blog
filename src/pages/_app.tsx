@@ -1,7 +1,8 @@
-import { ThemeProvider } from 'contexts/ThemeContext';
-import config from 'lib/config';
-import { defaultSeo, socialProfileJsonLd } from 'lib/config/SEO';
-import { globalStyles, themeClassNames } from 'stitches.config';
+import { ThemeProvider } from 'src/contexts/ThemeContext';
+import { ThemeProvider as NextThemeProvider } from 'next-themes';
+import config from 'src/lib/config';
+import { defaultSeo, socialProfileJsonLd } from 'src/lib/config/SEO';
+import { darkTheme, globalStyles } from 'stitches.config';
 import { NextPage } from 'next';
 import { DefaultSeo, SocialProfileJsonLd } from 'next-seo';
 
@@ -9,6 +10,7 @@ import type { AppProps as NextAppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { ReactElement, ReactNode } from 'react';
 import Layout from 'src/components/Layout';
+import 'src/styles/global.scss';
 
 export type AppProps = NextAppProps & {
   Component: NextPage & {
@@ -25,9 +27,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
     router.pathname === '/' ? '' : router.pathname
   }/`;
 
-  globalStyles();
-
   const getLayout = Component.getLayout ?? ((page) => <Layout>{page}</Layout>);
+
+  globalStyles();
 
   return (
     <>
@@ -48,9 +50,16 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         }
       />
       <SocialProfileJsonLd {...socialProfileJsonLd} />
-      <ThemeProvider classNames={themeClassNames}>
-        {getLayout(<Component {...pageProps} />)}
-      </ThemeProvider>
+      <NextThemeProvider
+        attribute={'class'}
+        defaultTheme={'system'}
+        value={{
+          light: 'light',
+          dark: darkTheme.className,
+        }}
+      >
+        <ThemeProvider>{getLayout(<Component {...pageProps} />)}</ThemeProvider>
+      </NextThemeProvider>
     </>
   );
 }

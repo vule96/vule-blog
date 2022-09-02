@@ -1,16 +1,16 @@
 import Link from 'src/components/Link';
 
 import { styled, theme } from 'stitches.config';
-import * as config from 'lib/config';
+import * as config from 'src/lib/config';
 import type { ComponentProps } from 'react';
 
 const Wrapper = styled('footer', {
   width: '100%',
   padding: '1.25em 1.5em',
-  borderTop: `1px solid ${theme.colors.kindaLight}`,
-  backgroundColor: theme.colors.backgroundOuter,
-  color: theme.colors.mediumDark,
-  transition: `background ${theme.transitions.fade}, border ${theme.transitions.fade}`,
+  // borderTop: `1px solid ${theme.colors.kindaLight}`,
+  // backgroundColor: theme.colors.backgroundOuter,
+  // color: theme.colors.mediumDark,
+  // transition: `background ${theme.transitions.fade}, border ${theme.transitions.fade}`,
 
   '@medium': {
     padding: '1em 1.25em',
@@ -33,7 +33,7 @@ const Row = styled('div', {
 });
 
 const PlainLink = styled(Link, {
-  color: theme.colors.mediumDark,
+  // color: theme.colors.mediumDark,
 });
 
 export type FooterProps = ComponentProps<typeof Wrapper>;

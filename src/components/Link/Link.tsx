@@ -1,74 +1,90 @@
 import NextLink from 'next/link';
-import objStr from 'obj-str';
-import { styled, theme, stitchesConfig } from 'stitches.config';
-import { baseUrl } from 'lib/config';
-import type { ComponentProps } from 'react';
+import { useRouter } from 'next/router';
+import { ComponentProps, useMemo } from 'react';
+import type { FC } from 'src/types/fc';
+
+import { styled } from 'stitches.config';
+
+const prefetchBlockList = ['/music', '/static'];
+
+const isLocalLink = (href?: string): boolean | '' | undefined =>
+  href && (href.startsWith('/') || href.startsWith('#'));
 
 const StyledLink = styled(NextLink, {
-  color: theme.colors.link,
-  textDecoration: 'none',
-
+  display: 'inline-block',
+  fontWeight: 500,
+  color: '$accent',
+  hocus: {
+    color: '$accent-dark',
+    dark: {
+      color: '$accent-light',
+    },
+  },
   variants: {
     underline: {
       true: {
-        ...stitchesConfig.utils.setUnderlineColor({
-          color: '$colors$linkUnderline',
-        }),
-
-        backgroundImage: 'linear-gradient($$underlineColor, $$underlineColor)',
-        backgroundPosition: '0% 100%',
-        backgroundRepeat: 'no-repeat',
-        backgroundSize: '0% 2px',
-        paddingBottom: '3px',
-
-        '@media (prefers-reduced-motion: no-preference)': {
-          transition: `background-size ${theme.transitions.linkHover}`,
-        },
-
-        '&:hover, &:focus-visible': {
-          backgroundSize: '100% 2px',
+        hocus: {
+          textDecoration: 'underline',
+          textDecorationThickness: '2px',
+          textUnderlineOffset: '2px',
         },
       },
-      false: {},
     },
   },
 });
 
-export type LinkProps = ComponentProps<typeof StyledLink> & {
+interface LinkProps {
+  underline?: boolean;
   openInNewTab?: boolean;
-};
+  disabled?: boolean;
+  tabIndex?: number;
+}
 
-const Link = ({
-  href,
-  rel,
-  target,
-  prefetch = false,
-  underline = true,
-  openInNewTab,
-  ...rest
-}: LinkProps): JSX.Element => {
-  const isExternal =
-    typeof href === 'string' &&
-    !(href.startsWith('/') || href.startsWith('#') || href.startsWith(baseUrl));
+const Link: FC<ComponentProps<typeof StyledLink> & LinkProps> = (props) => {
+  const { href: url, ...otherProps } = props;
+  // eslint-disable-next-line @typescript-eslint/no-base-to-string
+  const href: string = url.toString();
+  const {
+    openInNewTab = !isLocalLink(href),
+    underline = true,
+    ...rest
+  } = otherProps;
+  const router = useRouter();
 
-  if (openInNewTab ?? isExternal) {
+  const shouldPrefetch = useMemo<boolean>(() => {
+    if (!router || !router.isReady || openInNewTab) return false;
+    if (prefetchBlockList.some((link) => href.startsWith(link))) {
+      return false;
+    }
+    const { asPath: pathname } = router;
+    if (href === pathname || href.startsWith('#')) return false;
+    const hrefWithoutCurrentPath = href.replace(pathname, '');
+    const lastHrefPart = hrefWithoutCurrentPath.substring(
+      hrefWithoutCurrentPath.lastIndexOf('/') + 1
+    );
+    if (href.startsWith(pathname) && lastHrefPart.startsWith('#')) return false;
+    return true;
+  }, [router, href, openInNewTab]);
+
+  if (openInNewTab) {
     return (
       <StyledLink
         href={href}
-        target={target ?? '_blank'}
-        rel={objStr({
-          [`${rel}`]: rel,
-          noopener: true,
-          noreferrer: isExternal,
-        })}
-        underline={underline}
+        target={'_blank'}
+        rel={'noopener noreferrer'}
+        aria-label={rest.title}
         {...rest}
+        underline={underline}
       />
     );
   }
 
   return (
-    <StyledLink {...{ href, rel, target, prefetch, underline, ...rest }} />
+    <StyledLink
+      {...{ href, prefetch: shouldPrefetch, ...rest }}
+      aria-label={rest.title}
+      underline={underline}
+    />
   );
 };
 

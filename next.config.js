@@ -1,6 +1,6 @@
 const path = require('path');
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants');
-const config = require('./lib/config');
+const config = require('./src/lib/config');
 
 module.exports = (phase) => {
   /** @type {import('next').NextConfig} */
@@ -20,6 +20,9 @@ module.exports = (phase) => {
       // check if we're running locally via `next dev`:
       IS_DEV_SERVER: phase === PHASE_DEVELOPMENT_SERVER ? 'true' : '',
     },
+    sassOptions: {
+      includePaths: [path.join(__dirname, 'src/styles')],
+    },
     images: {
       deviceSizes: [640, 750, 828, 1080, 1200, 1920],
       formats: ['image/avif', 'image/webp'],
@@ -27,13 +30,13 @@ module.exports = (phase) => {
     experimental: {
       legacyBrowsers: false,
       browsersListForSwc: true,
+      // optimizeCss: true,
       images: {
         allowFutureImage: true, // https://github.com/vercel/next.js/pull/37927
       },
       newNextLinkBehavior: true, // https://github.com/vercel/next.js/pull/36436
     },
     webpack: (config) => {
-      // this lets us statically import webfonts like we would images, allowing cool things like preloading them
       config.module.rules.push({
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         issuer: { and: [/\.(js|ts)x?$/] },
@@ -42,10 +45,6 @@ module.exports = (phase) => {
           filename: 'static/media/[name].[hash:8][ext]',
         },
       });
-
-      // allow processing SVGs from the below packages directly instead of through their different exports, and leave
-      // other static imports of SVGs alone.
-      // see: ./components/Icons/index.ts
       config.module.rules.push({
         test: /\.svg$/i,
         issuer: { and: [/\.(js|ts)x?$/] },

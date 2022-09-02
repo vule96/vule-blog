@@ -1,31 +1,22 @@
 import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
-import * as config from 'lib/config';
-import { getCssText, themeClassNames, themeStorageKey } from 'stitches.config';
-import { Inter, RobotoMono } from 'lib/stitches/fonts';
-import ThemeScript from 'src/components/ThemeScript';
+import * as config from 'src/lib/config';
+import { getCssText, preloadFonts } from 'stitches.config';
 
 export default class Document extends NextDocument {
   render(): JSX.Element {
     return (
-      <Html lang={config.siteLocale} className={themeClassNames.light}>
+      <Html lang={config.siteLocale}>
         <Head>
-          {/* inject a small script to set/restore the user's theme ASAP */}
-          <ThemeScript
-            id='restore-theme'
-            {...{ themeClassNames, themeStorageKey }}
-          />
-
-          {[...Inter.preloads, ...RobotoMono.preloads].map(
-            ({ href, key, type }) => (
-              <link
-                key={key}
-                rel='preload'
-                as='font'
-                {...{ type, href }}
-                crossOrigin='anonymous'
-              />
-            )
-          )}
+          {preloadFonts.map((font) => (
+            <link
+              key={`font-${font.key}`}
+              rel={'preload'}
+              as={'font'}
+              type={font.type}
+              href={font.href}
+              crossOrigin={'anonymous'}
+            />
+          ))}
 
           <style
             id='stitches'
