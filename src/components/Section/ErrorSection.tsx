@@ -118,12 +118,7 @@ export const Error: FC<{ error?: string }> = (props) => {
       ) : null}
       <p>
         Please{' '}
-        <Link
-          title={'Create issue on GitHub'}
-          href={
-            'https://github.com/jahirfiquitiva/jahir.dev/issues/new?assignees=jahirfiquitiva&labels=bug&template=1_bug_report.yaml'
-          }
-        >
+        <Link title={'Create issue on GitHub'} href={'https://github.com/'}>
           let me know
         </Link>{' '}
         about this issue, so that I can fix it.
