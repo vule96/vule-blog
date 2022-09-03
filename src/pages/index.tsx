@@ -1,10 +1,14 @@
 import { FC } from 'react';
-import { Intro } from 'src/components/Intro';
+import { DotsDivider } from 'src/components/Divider';
+import { Intro as IntroSection } from 'src/components/Intro';
+import { Skills as SkillsSection } from 'src/components/Skills';
 
 const Home: FC = () => {
   return (
     <>
-      <Intro />
+      <IntroSection />
+      <DotsDivider />
+      <SkillsSection />
     </>
   );
 };

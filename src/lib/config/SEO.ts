@@ -1,5 +1,14 @@
 import { DefaultSeoProps, SocialProfileJsonLdProps } from 'next-seo';
+import type { StaticImageData } from 'next/image';
 import * as config from '.';
+
+import chrome192Png from 'public/static/favicons/android-chrome-192x192.png';
+import chrome512Png from 'public/static/favicons/android-chrome-512x512.png';
+import appleTouchIconPng from 'public/static/favicons/apple-touch-icon.png';
+import faviconIco from 'public/static/favicons/favicon.ico';
+import faviconPng from 'public/static/favicons/favicon.png';
+import maskable192Png from 'public/static/favicons/maskable-192x192.png';
+import maskable512Png from 'public/static/favicons/maskable-512x512.png';
 
 // Most of this file simply takes the data already defined in ./config.js and translates it into objects that are
 // compatible with next-seo's props:
@@ -32,20 +41,20 @@ export const defaultSeo: DefaultSeoProps = {
     },
   ],
   additionalLinkTags: [
-    // {
-    //   rel: 'icon',
-    //   href: faviconIco.src,
-    // },
-    // {
-    //   rel: 'icon',
-    //   href: faviconPng.src,
-    //   type: 'image/png',
-    // },
-    // {
-    //   rel: 'apple-touch-icon',
-    //   href: appleTouchIconPng.src,
-    //   sizes: `${appleTouchIconPng.width}x${appleTouchIconPng.height}`,
-    // },
+    {
+      rel: 'icon',
+      href: faviconIco.src,
+    },
+    {
+      rel: 'icon',
+      href: faviconPng.src,
+      type: 'image/png',
+    },
+    {
+      rel: 'apple-touch-icon',
+      href: appleTouchIconPng.src,
+      sizes: `${appleTouchIconPng.width}x${appleTouchIconPng.height}`,
+    },
     {
       rel: 'manifest',
       href: '/site.webmanifest',
@@ -54,13 +63,15 @@ export const defaultSeo: DefaultSeoProps = {
       rel: 'alternate',
       href: '/feed.xml',
       type: 'application/rss+xml',
-      //   title: `${config.siteName} (RSS)`,
+      // @ts-expect-error
+      title: `${config.siteName} (RSS)`,
     },
     {
       rel: 'alternate',
       href: '/feed.atom',
       type: 'application/atom+xml',
-      //   title: `${config.siteName} (Atom)`,
+      // @ts-expect-error
+      title: `${config.siteName} (Atom)`,
     },
     // {
     //   rel: 'humans',
@@ -86,4 +97,15 @@ export const socialProfileJsonLd: SocialProfileJsonLdProps = {
     `https://www.linkedin.com/in/${config.authorSocial?.linkedin}/`,
     `https://www.facebook.com/${config.authorSocial?.facebook}`,
   ],
+};
+
+export const favicons: Record<string, StaticImageData> = {
+  faviconIco,
+  faviconPng,
+  appleTouchIconPng,
+  chrome512Png,
+  chrome192Png,
+  maskable512Png,
+  maskable192Png,
+  // meJpg,
 };
