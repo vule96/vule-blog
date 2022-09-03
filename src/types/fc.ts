@@ -3,7 +3,7 @@ import {
   FC as ReactFunctionalComponent,
   ReactNode,
 } from 'react';
-import { StitchesCSS as CSS } from 'stitches.config';
+import { StitchesCSS as CSS } from '~/stitches';
 
 export type ComponentChild = ReactNode | ReactNode[] | null | undefined;
 

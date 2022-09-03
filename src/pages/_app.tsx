@@ -1,10 +1,10 @@
-import { ThemeProvider } from 'src/contexts/ThemeContext';
-import { ThemeProvider as NextThemeProvider } from 'next-themes';
-import config from 'src/lib/config';
-import { defaultSeo, socialProfileJsonLd } from 'src/lib/config/SEO';
-import { darkTheme, globalStyles } from 'stitches.config';
 import { NextPage } from 'next';
 import { DefaultSeo, SocialProfileJsonLd } from 'next-seo';
+import { ThemeProvider as NextThemeProvider } from 'next-themes';
+import { ThemeProvider } from 'src/contexts/ThemeContext';
+import config from 'src/lib/config';
+import { defaultSeo, socialProfileJsonLd } from 'src/lib/config/SEO';
+import { darkTheme, globalStyles } from '~/stitches';
 
 import type { AppProps as NextAppProps } from 'next/app';
 import { useRouter } from 'next/router';

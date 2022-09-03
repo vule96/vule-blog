@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-const useFirstMountState = (): boolean => {
+export const useFirstMountState = (): boolean => {
   const isFirstMount = useRef(true);
 
   if (isFirstMount.current) {
@@ -11,5 +11,3 @@ const useFirstMountState = (): boolean => {
 
   return isFirstMount.current;
 };
-
-export default useFirstMountState;

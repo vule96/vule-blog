@@ -38,7 +38,7 @@ export const {
       robotoVar: `${fonts.RobotoMono.name.variable}, ${systemFont}`,
     },
     sizes: {
-      maxLayoutWidth: '960px',
+      'max-site-width': '960px',
     },
     fontSizes,
     space: spaces as { [x: string]: string },

@@ -1,6 +1,6 @@
-import { StitchesCSS, styled } from 'stitches.config';
-import Link from 'src/components/Link';
 import { gradientVariants } from 'src/lib/stitches/utils/gradient';
+import { styled, type StitchesCSS } from '~/stitches';
+import { Link } from '../Link';
 
 const spanCss: StitchesCSS = {
   color: '$transparent',
@@ -13,7 +13,7 @@ const activeCss: StitchesCSS = {
   '& span': spanCss,
 };
 
-export const ToolbarLink = styled(Link, {
+export const NavbarLink = styled(Link, {
   height: '100%',
   display: 'inline-flex',
   alignItems: 'center',
@@ -50,7 +50,7 @@ export const ToolbarLink = styled(Link, {
   },
 });
 
-export const ToolbarLinksContainer = styled('ul', {
+export const NavbarLinksContainer = styled('ul', {
   height: '100%',
   minHeight: '42px',
   maxHeight: '42px',

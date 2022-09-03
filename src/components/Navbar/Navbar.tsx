@@ -1,15 +1,13 @@
-// import { mdiMenu, mdiPlus } from '@mdi/js';
+import { mdiMenu, mdiPlus } from '@mdi/js';
 import { FC, useState } from 'react';
-import { styled } from 'stitches.config';
-
+import { styled } from '~/stitches';
+import { MobileMenu } from './NavbarButton';
+import { NavbarLink, NavbarLinksContainer } from './NavbarLink';
+import { NavbarNavLinks } from './NavbarNavLinks';
+import { ThemeToggle } from './ThemeToggle';
 // import { Logo } from '@/components/atoms';
 
-// import { ThemeToggle } from './ThemeToggle';
-// import { MobileMenu } from './ToolbarButton';
-import { ToolbarLinksContainer, ToolbarLink } from './ToolbarLink';
-import { ToolbarNavLinks } from './ToolbarNavLinks';
-
-const HeaderContainer = styled('header', {
+const Header = styled('header', {
   $$toolbarHeight: '56px',
   $$floatingMargin: 'calc($$totalToolbarHeight - $$toolbarHeight)',
   $$baseActualHeight: 'calc($$toolbarHeight + $$floatingMargin)',
@@ -111,32 +109,30 @@ const Nav = styled('nav', {
   },
 });
 
-const Header: FC = () => {
-  const [isExpanded] = useState(false);
+export const Navbar: FC = () => {
+  const [isExpanded, expand] = useState(false);
   return (
-    <HeaderContainer expanded={isExpanded}>
+    <Header expanded={isExpanded}>
       <Nav expanded={isExpanded}>
-        <ToolbarLink home href={'/'} title={'Home page'} underline={false}>
+        <NavbarLink home href={'/'} title={'Home page'} underline={false}>
           {/* <Logo fillColor={theme.colors['gradient-brand']?.value} /> */}
           <span>Vu Le</span>
-        </ToolbarLink>
-        <ToolbarNavLinks expanded={isExpanded} />
-        <ToolbarLinksContainer>
-          {/* <ThemeToggle /> */}
+        </NavbarLink>
+        <NavbarNavLinks expanded={isExpanded} />
+        <NavbarLinksContainer>
+          <ThemeToggle />
           <li>
-            {/* <MobileMenu
+            <MobileMenu
               title={`${isExpanded ? 'Collapse' : 'Expand'} menu`}
               aria-expanded={isExpanded}
               iconPath={isExpanded ? mdiPlus : mdiMenu}
               onClick={() => {
                 expand(!isExpanded);
               }}
-            /> */}
+            />
           </li>
-        </ToolbarLinksContainer>
+        </NavbarLinksContainer>
       </Nav>
-    </HeaderContainer>
+    </Header>
   );
 };
-
-export default Header;

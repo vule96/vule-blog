@@ -20,6 +20,8 @@
   "dependencies": {
     "@fontsource/inter": "^4.5.12",
     "@fontsource/roboto-mono": "^4.5.8",
+    "@mdi/js": "^7.0.96",
+    "@mdi/react": "^1.6.1",
     "@stitches/react": "^1.2.8",
     "fathom-client": "^3.5.0",
     "feather-icons": "^4.29.0",

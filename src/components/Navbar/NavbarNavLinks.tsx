@@ -1,40 +1,17 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-
-import { ToolbarLink, ToolbarLinksContainer } from './ToolbarLink';
-import type { FC } from 'src/types/fc';
+import { menuItems } from 'src/lib/config/menu';
 import { GradientOption } from 'src/lib/stitches/utils/gradient';
+import type { FC } from 'src/types/fc';
+import { NavbarLink, NavbarLinksContainer } from './NavbarLink';
 
-interface ToolbarLinkItem {
+export interface NavbarLinkItem {
   title: string;
   href: string;
   gradient: GradientOption;
 }
 
-const toolbarLinksList: ToolbarLinkItem[] = [
-  {
-    title: 'About',
-    href: '/about',
-    gradient: 'blue-to-green',
-  },
-  {
-    title: 'Blog',
-    href: '/blog',
-    gradient: 'yellow-to-orange',
-  },
-  {
-    title: 'Projects',
-    href: '/projects',
-    gradient: 'red-to-purple',
-  },
-  {
-    title: 'Contact',
-    href: '/contact',
-    gradient: 'brand-to-blue',
-  },
-];
-
-export const ToolbarNavLinks: FC<{ expanded?: boolean }> = (props) => {
+export const NavbarNavLinks: FC<{ expanded?: boolean }> = (props) => {
   const router = useRouter();
   const [activeLink, setActiveLink] = useState(-1);
 
@@ -49,11 +26,11 @@ export const ToolbarNavLinks: FC<{ expanded?: boolean }> = (props) => {
   }, [router]);
 
   return (
-    <ToolbarLinksContainer links expanded={props.expanded}>
-      {toolbarLinksList.map((link, index) => {
+    <NavbarLinksContainer links expanded={props.expanded}>
+      {menuItems.map((link, index) => {
         return (
           <li key={index}>
-            <ToolbarLink
+            <NavbarLink
               underline={false}
               gradient={link.gradient}
               title={`${link.title} page`}
@@ -61,12 +38,10 @@ export const ToolbarNavLinks: FC<{ expanded?: boolean }> = (props) => {
               aria-current={activeLink === index ? 'page' : undefined}
             >
               <span>{link.title}</span>
-            </ToolbarLink>
+            </NavbarLink>
           </li>
         );
       })}
-    </ToolbarLinksContainer>
+    </NavbarLinksContainer>
   );
 };
-
-export default ToolbarNavLinks;

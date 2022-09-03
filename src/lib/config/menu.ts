@@ -1,31 +1,24 @@
-import {
-  HomeIcon,
-  NotesIcon,
-  ProjectsIcon,
-  ContactIcon,
-} from 'src/components/Icons';
-// import type { MenuItemProps } from 'src/components/Menu';
+import { NavbarLinkItem } from 'src/components/Navbar/NavbarNavLinks';
 
-// export const menuItems: MenuItemProps[] = [
-export const menuItems: any[] = [
+export const menuItems: NavbarLinkItem[] = [
   {
-    icon: HomeIcon,
-    text: 'Home',
-    href: '/',
+    title: 'About',
+    href: '/about',
+    gradient: 'blue-to-green',
   },
   {
-    icon: NotesIcon,
-    text: 'Notes',
-    href: '/notes',
+    title: 'Blog',
+    href: '/blog',
+    gradient: 'yellow-to-orange',
   },
   {
-    icon: ProjectsIcon,
-    text: 'Projects',
+    title: 'Projects',
     href: '/projects',
+    gradient: 'red-to-purple',
   },
   {
-    icon: ContactIcon,
-    text: 'Contact',
+    title: 'Contact',
     href: '/contact',
+    gradient: 'brand-to-blue',
   },
 ];

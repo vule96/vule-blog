@@ -1,6 +1,6 @@
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, { Head, Html, Main, NextScript } from 'next/document';
 import * as config from 'src/lib/config';
-import { getCssText, preloadFonts } from 'stitches.config';
+import { getCssText, preloadFonts } from '~/stitches';
 
 export default class Document extends NextDocument {
   render(): JSX.Element {
