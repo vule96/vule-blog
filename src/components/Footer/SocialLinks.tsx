@@ -1,5 +1,6 @@
 import { mdiInstagram, mdiFacebook } from '@mdi/js';
 import Icon from '@mdi/react';
+import config from 'src/lib/config';
 
 import { styled } from '~/stitches';
 import {
@@ -98,14 +99,17 @@ export const SocialLinks = (): JSX.Element => {
   return (
     <SocialLinksContainer aria-label={'Social links'}>
       <li>
-        <GitHubLink title={'GitHub'} href={'https://github.com/vule96'}>
+        <GitHubLink
+          title={'GitHub'}
+          href={`https://github.com/${config.authorSocial.github}`}
+        >
           <Icon path={gitHubOutline} size={iconSize} />
         </GitHubLink>
       </li>
       <li>
         <LinkedInLink
           title={'LinkedIn'}
-          href={'https://linkedin.com/in/vuledev'}
+          href={`https://linkedin.com/in/${config.authorSocial.linkedin}`}
         >
           <Icon path={linkedInOutline} size={iconSize} />
         </LinkedInLink>
@@ -113,23 +117,23 @@ export const SocialLinks = (): JSX.Element => {
       <li>
         <FaceBookLink
           title={'Facebook'}
-          href={'https://www.facebook.com/vuledev'}
+          href={`https://www.facebook.com/${config.authorSocial.facebook}`}
         >
           <Icon path={mdiFacebook} size={iconSize} />
         </FaceBookLink>
       </li>
       <li>
-        <TwitterLink title={'Twitter'} href={'#'}>
+        <TwitterLink title={'Twitter'} href={'/'}>
           <Icon path={twitterOutline} size={iconSize} />
         </TwitterLink>
       </li>
       <li>
-        <InstagramLink title={'Instagram'} href={'#'}>
+        <InstagramLink title={'Instagram'} href={'/'}>
           <Icon path={mdiInstagram} size={iconSize} />
         </InstagramLink>
       </li>
       <li>
-        <PolyworkLink title={'Polywork Timeline'} href={'#'}>
+        <PolyworkLink title={'Polywork Timeline'} href={'/'}>
           <Icon path={polywork} size={iconSize} />
         </PolyworkLink>
       </li>

@@ -1,11 +1,11 @@
 import { mdiMenu, mdiPlus } from '@mdi/js';
 import { FC, useState } from 'react';
-import { styled } from '~/stitches';
+import { styled, theme } from '~/stitches';
+import { Logo } from '../Logo';
 import { MobileMenu } from './NavbarButton';
 import { NavbarLink, NavbarLinksContainer } from './NavbarLink';
 import { NavbarNavLinks } from './NavbarNavLinks';
 import { ThemeToggle } from './ThemeToggle';
-// import { Logo } from '@/components/atoms';
 
 const Header = styled('header', {
   $$toolbarHeight: '56px',
@@ -115,7 +115,7 @@ export const Navbar: FC = () => {
     <Header expanded={isExpanded}>
       <Nav expanded={isExpanded}>
         <NavbarLink home href={'/'} title={'Home page'} underline={false}>
-          {/* <Logo fillColor={theme.colors['gradient-brand']?.value} /> */}
+          <Logo fillColor={theme.colors['gradient-brand']?.value} />
           <span>Vu Le</span>
         </NavbarLink>
         <NavbarNavLinks expanded={isExpanded} />

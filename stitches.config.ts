@@ -1,7 +1,6 @@
 import { createStitches } from '@stitches/react';
 import type * as Stitches from '@stitches/react';
 
-// web fonts
 import { Inter, RobotoMono } from './src/lib/stitches/fonts';
 import {
   breakpoints,
@@ -93,12 +92,3 @@ export const globalStyles = globalCss({
 });
 
 export const preloadFonts = [...Inter.preloads, ...RobotoMono.preloads];
-
-// theme classnames are generated dynamically by stitches, so have ThemeProvider pull them from there
-export const themeClassNames = {
-  light: theme.className,
-  dark: darkTheme.className,
-};
-
-// local storage key
-export const themeStorageKey = 'theme';

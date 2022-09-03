@@ -45,27 +45,27 @@ module.exports = (phase) => {
           filename: 'static/media/[name].[hash:8][ext]',
         },
       });
-      config.module.rules.push({
-        test: /\.svg$/i,
-        issuer: { and: [/\.(js|ts)x?$/] },
-        use: [
-          {
-            loader: '@svgr/webpack',
-            options: {
-              icon: true,
-              typescript: true,
-              svgProps: {
-                'aria-hidden': true,
-              },
-            },
-          },
-        ],
-        include: [
-          // path.resolve(__dirname, 'node_modules/@primer/octicons/build/svg'),
-          path.resolve(__dirname, 'node_modules/feather-icons/dist/icons'),
-          // path.resolve(__dirname, 'node_modules/simple-icons/icons'),
-        ],
-      });
+      // config.module.rules.push({
+      //   test: /\.svg$/i,
+      //   issuer: { and: [/\.(js|ts)x?$/] },
+      //   use: [
+      //     {
+      //       loader: '@svgr/webpack',
+      //       options: {
+      //         icon: true,
+      //         typescript: true,
+      //         svgProps: {
+      //           'aria-hidden': true,
+      //         },
+      //       },
+      //     },
+      //   ],
+      //   include: [
+      //     path.resolve(__dirname, 'node_modules/@primer/octicons/build/svg'),
+      //     path.resolve(__dirname, 'node_modules/feather-icons/dist/icons'),
+      //     path.resolve(__dirname, 'node_modules/simple-icons/icons'),
+      //   ],
+      // });
 
       return config;
     },

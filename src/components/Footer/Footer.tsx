@@ -1,11 +1,8 @@
+import { metaLinks, primaryLinks, secondaryLinks } from 'src/lib/config/footer';
 import type { FC } from 'src/types/fc';
 import { styled } from '~/stitches';
 
-import {
-  FooterLink,
-  FooterLinksGroup,
-  type FooterLinkProps,
-} from './FooterLinksGroup';
+import { FooterLink, FooterLinksGroup } from './FooterLinksGroup';
 import { SocialLinks } from './SocialLinks';
 
 const StyledFooter = styled('footer', {
@@ -56,69 +53,6 @@ const LinksContainer = styled('div', {
     justifyContent: 'space-between',
   },
 });
-
-const primaryLinks: FooterLinkProps[] = [
-  {
-    title: 'About',
-    href: '/about',
-    gradient: 'blue-to-green',
-  },
-  {
-    title: 'Blog',
-    href: '/blog',
-    gradient: 'yellow-to-orange',
-  },
-  {
-    title: 'Projects',
-    href: '/projects',
-    gradient: 'red-to-purple',
-  },
-  {
-    title: 'Contact',
-    href: '/contact',
-    gradient: 'brand-to-blue',
-  },
-];
-
-const secondaryLinks: FooterLinkProps[] = [
-  {
-    title: 'Uses',
-    href: '/uses',
-    gradient: 'yellow-to-orange',
-  },
-  {
-    title: 'Donate',
-    href: '/donate',
-    gradient: 'orange-to-red',
-  },
-  {
-    title: 'Inspiration',
-    href: '/inspiration',
-    gradient: 'brand-to-blue',
-  },
-  {
-    title: 'Dashboard',
-    href: '/dashboard',
-    gradient: 'purple-to-brand',
-  },
-];
-
-const metaLinks: FooterLinkProps[] = [
-  {
-    title: 'RSS',
-    href: '/feed.xml',
-    gradient: 'yellow-to-orange',
-    a11yTitle: 'RSS Feed',
-    openInNewTab: true,
-  },
-  {
-    title: 'Source',
-    href: 'https://github.com/jahirfiquitiva/jahir.dev',
-    gradient: 'brand-to-blue',
-    a11yTitle: 'View source code on GitHub',
-    openInNewTab: true,
-  },
-];
 
 export const Footer: FC = () => {
   return (

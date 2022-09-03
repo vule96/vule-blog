@@ -20,7 +20,7 @@ module.exports = {
   authorSocial: {
     github: 'vule96',
     twitter: 'VuLH08',
-    facebook: 'vule290596',
-    linkedin: 'huy-vũ-lê-592bb3221',
+    facebook: 'vuledev',
+    linkedin: 'vuledev',
   },
 };
