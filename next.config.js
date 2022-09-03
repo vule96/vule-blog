@@ -7,6 +7,16 @@ module.exports = (phase) => {
   const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
+    compress: true,
+    crossOrigin: 'anonymous',
+    experimental: {
+      legacyBrowsers: false,
+      browsersListForSwc: true,
+      newNextLinkBehavior: true, // https://github.com/vercel/next.js/pull/36436
+      images: {
+        allowFutureImage: true, // https://github.com/vercel/next.js/pull/37927
+      },
+    },
     env: {
       BASE_URL:
         process.env.NEXT_PUBLIC_VERCEL_ENV !== 'production' &&
@@ -26,15 +36,6 @@ module.exports = (phase) => {
     images: {
       deviceSizes: [640, 750, 828, 1080, 1200, 1920],
       formats: ['image/avif', 'image/webp'],
-    },
-    experimental: {
-      legacyBrowsers: false,
-      browsersListForSwc: true,
-      // optimizeCss: true,
-      images: {
-        allowFutureImage: true, // https://github.com/vercel/next.js/pull/37927
-      },
-      newNextLinkBehavior: true, // https://github.com/vercel/next.js/pull/36436
     },
     webpack: (config) => {
       config.module.rules.push({

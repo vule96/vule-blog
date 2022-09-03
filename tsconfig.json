@@ -14,11 +14,18 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "downlevelIteration": true,
     "baseUrl": ".",
     "paths": {
       "~/stitches": ["stitches.config.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "jest.setup.js"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "jest.setup.js",
+    "next.config.js"
+  ],
   "exclude": [".next", "node_modules"]
 }
