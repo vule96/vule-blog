@@ -23,6 +23,7 @@
     "@mdi/js": "^7.0.96",
     "@mdi/react": "^1.6.1",
     "@stitches/react": "^1.2.8",
+    "@uiball/loaders": "^1.2.6",
     "fathom-client": "^3.5.0",
     "feather-icons": "^4.29.0",
     "next": "12.2.4",
