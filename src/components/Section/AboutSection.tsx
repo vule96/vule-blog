@@ -4,6 +4,7 @@ import type { FC } from 'src/types/fc';
 // import { Animoji, InstaFeed } from '@/components/compounds';
 
 import { styled } from '~/stitches';
+import { Animoji } from '../Animoji';
 import { Heading } from '../Heading';
 import { Link } from '../Link';
 import { Section } from './Section';
@@ -131,13 +132,13 @@ export const About: FC = ({ image }) => {
         </Link>
         !
       </Paragraph>
-      {/* <Animoji
+      <Animoji
         css={{
           mx: 'auto',
           mt: 'calc($$verticalContentPadding - $10)',
         }}
       />
-      <InstaFeed /> */}
+      {/* <InstaFeed /> */}
     </Section>
   );
 };
