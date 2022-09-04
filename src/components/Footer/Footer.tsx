@@ -1,7 +1,6 @@
 import { metaLinks, primaryLinks, secondaryLinks } from 'src/lib/config/footer';
 import type { FC } from 'src/types/fc';
-import { styled, theme } from '~/stitches';
-import { Logo } from '../Logo';
+import { styled } from '~/stitches';
 
 import { FooterLink, FooterLinksGroup } from './FooterLinksGroup';
 import { SocialLinks } from './SocialLinks';
@@ -73,8 +72,11 @@ export const Footer: FC = () => {
           gradient={'brand-to-blue'}
           forceGradient
         >
-          <Logo fillColor={theme.colors['gradient-brand']?.value} />
-          <span>Vu Le</span>
+          <span>
+            &copy; Copyright{' '}
+            {new Date(process.env.RELEASE_DATE ?? Date.now()).getUTCFullYear()}{' '}
+            - Vu Le
+          </span>
         </BrandLink>
         <SocialLinks />
       </InnerFooter>

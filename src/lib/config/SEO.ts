@@ -9,6 +9,7 @@ import faviconIco from 'public/static/favicons/favicon.ico';
 import faviconPng from 'public/static/favicons/favicon.png';
 import maskable192Png from 'public/static/favicons/maskable-192x192.png';
 import maskable512Png from 'public/static/favicons/maskable-512x512.png';
+import meJpg from 'public/static/images/avatar.jpeg';
 
 // Most of this file simply takes the data already defined in ./config.js and translates it into objects that are
 // compatible with next-seo's props:
@@ -24,8 +25,7 @@ export const defaultSeo: DefaultSeoProps = {
     type: 'website',
     images: [
       {
-        // url: `${config.baseUrl}${meJpg.src}`,
-        url: `${config.baseUrl}`,
+        url: `${config.baseUrl}${meJpg.src}`,
         alt: `${config.siteName} – ${config.shortDescription}`,
       },
     ],
@@ -107,5 +107,5 @@ export const favicons: Record<string, StaticImageData> = {
   chrome192Png,
   maskable512Png,
   maskable192Png,
-  // meJpg,
+  meJpg,
 };
