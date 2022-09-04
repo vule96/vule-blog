@@ -1,6 +1,7 @@
-import { mdiInstagram, mdiFacebook } from '@mdi/js';
+import { mdiFacebook, mdiInstagram } from '@mdi/js';
 import Icon from '@mdi/react';
 import config from 'src/lib/config';
+import type { FC } from 'src/types/fc';
 
 import { styled } from '~/stitches';
 import {
@@ -95,7 +96,7 @@ const PolyworkLink = styled(SocialLink, {
 });
 
 const iconSize = 0.9;
-export const SocialLinks = (): JSX.Element => {
+export const SocialLinks: FC = () => {
   return (
     <SocialLinksContainer aria-label={'Social links'}>
       <li>

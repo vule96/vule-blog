@@ -19,8 +19,9 @@ module.exports = {
   authorEmail: 'vuledev2905@gmail.com',
   authorSocial: {
     github: 'vule96',
-    twitter: 'VuLH08',
+    twitter: 'vule_dev',
     facebook: 'vuledev',
     linkedin: 'vuledev',
+    telegram: 'vuledev',
   },
 };
