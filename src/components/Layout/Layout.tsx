@@ -1,5 +1,6 @@
 import type { FC } from 'src/types/fc';
 import { keyframes, styled } from '~/stitches';
+import { BackToTop } from '../BackToTop';
 import { Footer } from '../Footer';
 import { Navbar } from '../Navbar';
 
@@ -34,6 +35,7 @@ const Layout: FC = (props) => {
       <Navbar />
       <Main>{children}</Main>
       <Footer />
+      <BackToTop />
     </>
   );
 };
